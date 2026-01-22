@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 100% 98%;
+    --foreground: 216 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 216 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 50% 10%;
+
+    --primary: 187 100% 45%;
+    --primary-foreground: 216 50% 10%;
+
+    --secondary: 263 84% 52%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 187 100% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --neon-cyan: 187 100% 50%;
+    --neon-purple: 263 84% 52%;
+    --neon-green: 142 71% 45%;
+    --paper-texture: 37 33% 85%;
+    --book-cover: 210 67% 11%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 0 0% 100%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 213 56% 4%;
+    --foreground: 214 70% 95%;
+
+    --card: 213 56% 6%;
+    --card-foreground: 214 70% 95%;
+
+    --popover: 213 56% 6%;
+    --popover-foreground: 214 70% 95%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 213 56% 4%;
+
+    --secondary: 263 84% 52%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 187 100% 50%;
+
+    --paper-texture: 37 33% 85%;
+    --book-cover: 210 67% 11%;
+    --glass-bg: 213 56% 8%;
+    --glass-border: 217 33% 25%;
+
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism */
+  .glass {
+    @apply bg-[hsl(var(--glass-bg)/0.6)] backdrop-blur-xl border border-[hsl(var(--glass-border)/0.3)] shadow-2xl;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+  }
+
+  /* Neon glow effects */
+  .neon-glow-cyan {
+    box-shadow: 
+      0 0 5px hsl(var(--neon-cyan)),
+      0 0 10px hsl(var(--neon-cyan) / 0.5),
+      0 0 20px hsl(var(--neon-cyan) / 0.3),
+      0 0 40px hsl(var(--neon-cyan) / 0.1);
+  }
+
+  .neon-glow-purple {
+    box-shadow: 
+      0 0 5px hsl(var(--neon-purple)),
+      0 0 10px hsl(var(--neon-purple) / 0.5),
+      0 0 20px hsl(var(--neon-purple) / 0.3),
+      0 0 40px hsl(var(--neon-purple) / 0.1);
+  }
+
+  .neon-glow-green {
+    box-shadow: 
+      0 0 5px hsl(var(--neon-green)),
+      0 0 10px hsl(var(--neon-green) / 0.5),
+      0 0 20px hsl(var(--neon-green) / 0.3);
+  }
+
+  .neon-text-cyan {
+    text-shadow: 
+      0 0 5px hsl(var(--neon-cyan)),
+      0 0 10px hsl(var(--neon-cyan) / 0.5),
+      0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .neon-text-purple {
+    text-shadow: 
+      0 0 5px hsl(var(--neon-purple)),
+      0 0 10px hsl(var(--neon-purple) / 0.5);
+  }
+
+  /* Patient ID badge */
+  .patient-badge {
+    @apply px-6 py-3 rounded-full font-mono text-sm font-semibold tracking-wider;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--secondary) / 0.2));
+    border: 1px solid hsl(var(--primary) / 0.5);
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes badge-pulse {
+    0%, 100% {
+      box-shadow: 
+        0 0 5px hsl(var(--primary)),
+        0 0 10px hsl(var(--primary) / 0.5),
+        0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 
+        0 0 10px hsl(var(--primary)),
+        0 0 20px hsl(var(--primary) / 0.7),
+        0 0 40px hsl(var(--primary) / 0.5);
+    }
+  }
+
+  /* Paper texture for book pages */
+  .paper-texture {
+    background-color: hsl(var(--paper-texture));
+    background-image: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+      linear-gradient(135deg, hsl(37 33% 88%) 0%, hsl(37 33% 82%) 50%, hsl(37 33% 78%) 100%);
+    background-blend-mode: overlay, normal;
+  }
+
+  /* Book cover styling */
+  .book-cover {
+    background: linear-gradient(145deg, hsl(var(--book-cover)), hsl(210 67% 8%));
+    box-shadow: 
+      inset 0 0 30px rgba(0, 0, 0, 0.5),
+      0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Input focus glow */
+  .input-glow:focus {
+    @apply outline-none ring-2 ring-primary;
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.4);
+  }
+
+  /* Button hover glow */
+  .btn-glow {
+    @apply transition-all duration-300;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 
+      0 0 20px hsl(var(--primary) / 0.6),
+      0 0 40px hsl(var(--primary) / 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Grid pattern background */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Floating orbs */
+  .floating-orb {
+    @apply absolute rounded-full blur-3xl opacity-20;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(-10px) translateX(-10px); }
+    75% { transform: translateY(-30px) translateX(5px); }
+  }
+
+  /* Tag input styles */
+  .tag {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--secondary) / 0.2));
+    border: 1px solid hsl(var(--primary) / 0.4);
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-book {
+    font-family: 'Cinzel', serif;
+  }
+}
