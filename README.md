@@ -1,73 +1,103 @@
-# Welcome to your Lovable project
+# 🏥 MediTrace Health Vault
 
-## Project info
+A modern **Doctor–Patient Communication & Health Records Platform** built with **MERN Stack + Gemini AI + Qdrant**.  
+Patients can upload medical documents, voice notes, and video notes, while doctors can verify patients, view their records, and chat securely.  
+The app also includes an AI assistant with **toggle mode** and **evidence-based answers** powered by Qdrant.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🚀 Key Features
 
-There are several ways of editing your application.
+### 👤 Patient Portal
+- ✅ Register & Login (Username + Password)
+- ✅ Unique **12-character Patient ID** auto-generated
+- ✅ Upload multiple files:
+  - PDF / Image / DOC
+  - Voice Notes (Audio)
+  - Video Notes
+- ✅ Add short description for every upload
+- ✅ Patient Dashboard with:
+  - **Document Upload (Active)**
+  - **Chat Room (Active)**
+- ✅ “Send to Doctor” option to make patient profile visible to doctors
 
-**Use Lovable**
+### 👨‍⚕️ Doctor Portal
+- ✅ Register & Login (Name + Multi-specialization tags + Username/Password)
+- ✅ Doctor Dashboard shows **Patient Cards**
+- ✅ Patient verification workflow (**Accept & Verify**)
+- ✅ View patient details:
+  - Basic info (Name, Mobile, Patient ID)
+  - Documents + Voice + Video uploads
+- ✅ Start chat by pasting Patient ID
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### 💬 Chat System (Toggle Mode)
+No `@` commands used.  
+Toggle-based chat modes:
 
-Changes made via Lovable will be committed automatically to this repo.
+✅ **Patient Side Toggle**
+- Doctor Chat
+- AI Chat (Gemini)
 
-**Use your preferred IDE**
+✅ **Doctor Side Toggle**
+- Patient Chat
+- AI Assist (Gemini)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🤖 AI + Smart Search
+- ✅ Gemini 2.5 Flash integration
+- ✅ Audio/Video transcript generation via Gemini
+- ✅ Evidence-based answers with:
+  - Confidence level (High/Medium/Low)
+  - “No evidence found” safe output
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🔍 Qdrant (Primary Vector Search Engine)
+Qdrant is used as the **main memory + semantic search engine** for:
+- Uploaded document embeddings
+- Transcripts embeddings
+- Summaries & searchable memory
+- Evidence retrieval for AI answers
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🧠 MongoDB vs Qdrant (How we use both)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### MongoDB Stores:
+- Doctor/Patient accounts
+- Authentication & sessions
+- Patient verification status
+- Chat messages (raw)
+- File upload URLs and metadata
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Qdrant Stores:
+- Embeddings (vectors) of patient records
+- Semantic search results for patient bot & doctor AI assist
+- Evidence retrieval context for grounded AI responses
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## 🛠️ Tech Stack
+- **Frontend:** React (JSX) + Tailwind CSS
+- **Backend:** Node.js + Express
+- **Database:** MongoDB Atlas
+- **Vector DB:** Qdrant
+- **AI Model:** Gemini `gemini-2.5-flash`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+PORT=5000
 
-This project is built with:
+# MongoDB Atlas
+MONGODB_URI
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# JWT Secret
+JWT_SECRET
 
-## How can I deploy this project?
+# Gemini AI
+GEMINI_API_KEY
+GEMINI_MODEL=gemini-2.5-flash
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Qdrant
+QDRANT_URL
+QDRANT_API_KEY
+QDRANT_COLLECTION=patient_memory
